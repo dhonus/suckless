@@ -1,0 +1,8 @@
+#!/bin/sh
+#on_off=$( xset s q | awk '/prefer/ {print $3}' )
+
+if [ $(xset s q | awk '/prefer/ {print $3}') = 'no' ]; then
+	echo "☕ "
+else 
+  echo "💤 "
+fi
