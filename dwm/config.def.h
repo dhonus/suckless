@@ -105,9 +105,9 @@ static Key keys[] = {
   { 0,      XF86XK_AudioRaiseVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ +5% ; pkill -RTMIN+10 dwmblocks;dunstify -h string:x-canonical-private-synchronous:audio \"Volume: \" -h int:value:\"`pamixer --get-volume`\" ") },
   { 0,      XF86XK_AudioLowerVolume,    spawn,     SHCMD("pactl set-sink-volume @DEFAULT_SINK@ -5% ; pkill -RTMIN+10 dwmblocks;dunstify -h string:x-canonical-private-synchronous:audio \"Volume: \" -h int:value:\"`pamixer --get-volume`\" ") },
   { 0,      XF86XK_AudioMute,    spawn,     SHCMD("pactl set-sink-mute @DEFAULT_SINK@ toggle") },
-  { MODKEY,      XK_Down,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause") },
-  { MODKEY ,     XK_Right,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next") },
-  { MODKEY,      XK_Left,           spawn,     SHCMD("dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous") },
+  { MODKEY,      XK_Down,           spawn,     SHCMD("playerctl -p playerctld play-pause") },
+  { MODKEY ,     XK_Right,           spawn,     SHCMD("playerctl -p playerctld next") },
+  { MODKEY,      XK_Left,           spawn,     SHCMD("playerctl -p playerctld previous") },
   { 0,      XF86XK_MonBrightnessDown,           spawn,   SHCMD("sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) - 10) ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
   /* my laptop doesn't seem to soft lock my brightness keys at 100% so I need this massive command to not ruin my display */
   { 0,      XF86XK_MonBrightnessUp,           spawn,   SHCMD(" if [ \"$(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10)\" = \"110\"  ]; then echo 100; else sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10); fi ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
