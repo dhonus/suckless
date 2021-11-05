@@ -92,8 +92,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
+	{ MODKEY,                       XK_eacute,      view,           {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_eacute,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
@@ -111,7 +111,7 @@ static Key keys[] = {
   { 0,      XF86XK_MonBrightnessDown,           spawn,   SHCMD("sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) - 10) ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
   /* my laptop doesn't seem to soft lock my brightness keys at 100% so I need this massive command to not ruin my display */
   { 0,      XF86XK_MonBrightnessUp,           spawn,   SHCMD(" if [ \"$(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10)\" = \"110\"  ]; then echo 100; else sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10); fi ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
-
+  { MODKEY|ShiftMask,      XK_a,           spawn,     SHCMD("/bin/sh ~/switch-audio-sink") },
   TAGKEYS(                        XK_plus,                      0)
 	TAGKEYS(                        XK_ecaron,                      1)
 	TAGKEYS(                        XK_scaron,                      2)
