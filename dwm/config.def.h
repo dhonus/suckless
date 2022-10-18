@@ -6,7 +6,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const int startwithgaps	     = 1;	 /* 1 means gaps are used by default */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;     /* 0: systray in the right corner, >0: systray on left of status text */
-static const unsigned int systrayspacing = 2;   /* systray spacing */
+static const unsigned int systrayspacing = 4;   /* systray spacing */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor */
 static const int showsystray        = 1;     /* 0 means no systray */
 
@@ -116,7 +116,7 @@ static Key keys[] = {
   { MODKEY,      XK_Left,           spawn,     SHCMD("playerctl -p playerctld previous") },
   { 0,      XF86XK_MonBrightnessDown,           spawn,   SHCMD("sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) - 10) ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
   /* my laptop doesn't seem to soft lock my brightness keys at 100% so I need this massive command to not ruin my display */
-  { 0,      XF86XK_MonBrightnessUp,           spawn,   SHCMD(" if [ \"$(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10)\" = \"110\"  ]; then echo 100; else sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10); fi ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
+  { 0,      XF86XK_MonBrightnessUp,           spawn,   SHCMD(" if [ \"$(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10)\" = \"210\"  ]; then echo 200; else sudo tee /sys/class/backlight/amdgpu_bl0/brightness <<< $(expr $(cat /sys/class/backlight/amdgpu_bl0/brightness) + 10); fi ; dunstify -h string:x-canonical-private-synchronous:audio \"Brightness: \" -h int:value:\"`cat /sys/class/backlight/amdgpu_bl0/brightness`\"")  },
   { MODKEY|ShiftMask,      XK_a,           spawn,     SHCMD("/bin/sh ~/switch-audio-sink") },
   TAGKEYS(                        XK_plus,                      0)
 	TAGKEYS(                        XK_ecaron,                      1)

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+battery_stat="$(acpi --battery)"
+battery_greped_status="$(echo $battery_stat | grep -Pio 'remaining|charged')"
+battery_percentage_v="$(echo $battery_stat | grep -Po '(\d+%)' | grep -Po '\d+')"
+
+
+if [ "$battery_greped_status" == "remaining" ]; then
+        runtime="$(echo $battery_stat | grep -Po '[0-9]+:[0-9]+:[0-9]+')"
+
+        if [ "$battery_percentage_v" -gt 0 ] && [ "$battery_percentage_v" -lt 20 ]; then
+        dunstify -h string:frcolor:#450f0f -h string:bgcolor:#6b1a1a  Battery\ low\! "$battery_percentage_v"%\ remaining.\ Plug\ in\ your\ device\ or\ risk\ data\ loss.
+        fi
+fi
